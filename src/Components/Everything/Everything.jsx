@@ -9,19 +9,21 @@ function Everything() {
   const [input, setInput] = useState('');
   const [data, setData] = useState([]);
   const [toFetch, setToFetch] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
 function handleSubmit(e) {
   e.preventDefault();
   setToFetch(prev => !prev);
+  setSearchTerm(input);
 }
 
   useEffect( ()=> {
-    toFetch && (
-      axios.get(`https://newsapi.org/v2/everything?q${input}=bitcoin&apiKey=${API_KEY}`)
+    toFetch && searchTerm.length != 0 && (
+      axios.get(`https://newsapi.org/v2/everything?q=${searchTerm}&apiKey=${API_KEY}`)
       .then( res => setData(res.data.articles))
-      .catch( err => console.log(err))
+      .catch( err => console.log("error",err))
     )
-  },[input,toFetch])
+  },[searchTerm,toFetch])
 
   return (
     <>
@@ -37,10 +39,10 @@ function handleSubmit(e) {
           <button className="border px-2 py-1 rounded-md bg-blue-700 text-white text-2xl ">search</button>
         </form>
       </div>
-      <div>
+      <div className="flex flex-wrap">
           { data != null ? (
             data.map( (data)=> {
-              return <NewsCard key={data.url} {...data} /> 
+              return <NewsCard key={data.source.id} {...data} /> 
             })
           ) : (
             <p className="text-5xl text-center bg-gray-400 rounded-lg"> <hr /> news will appear here </p>

@@ -7,7 +7,7 @@ function Header() {
     <>
         <div className="flex justify-between items-center mb-2 px-4 py-2 bg-black text-white text-3xl">
         <Link to={'/'}>
-        <img src={LOGO} alt="" className='w-10 h-10 max-h-24 max-w-24 rounded-lg' />
+        <img src={LOGO} alt="" className='w-16 h-16 max-h-44 max-w-44 rounded-lg' />
         </Link>
         <div>
           <ul className="flex gap-3">
@@ -27,6 +27,15 @@ function Header() {
                 }
               >
                 Top-Headings
+              </NavLink>
+            </li>
+            <li className="border p-2 rounded">
+              <NavLink to={'/github'} 
+                  className={({isActive}) =>
+                    `${isActive? "text-blue-700":"text-gray-400"} duration-200 hover:text-orange-700`
+                }
+              >
+                AboutMe 
               </NavLink>
             </li>
           </ul>

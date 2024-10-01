@@ -37,7 +37,7 @@ const NewsCard = ({ author, title, description, url, urlToImage, publishedAt, so
 NewsCard.propTypes = {
   author: PropTypes.string,                     // author is optional and should be a string
   title: PropTypes.string.isRequired,           // title is required and should be a string
-  description: PropTypes.string.isRequired,     // description is required and should be a string
+  description: PropTypes.string,     // description is required and should be a string
   url: PropTypes.string.isRequired,             // url is required and should be a string
   urlToImage: PropTypes.string,                   // urlToImg is optional and should be a string
   publishedAt: PropTypes.string.isRequired,     // publishedAt is required and should be a string (formatted date)
